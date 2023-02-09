@@ -1,4 +1,4 @@
-export const Gender:{id:number,name:string}[]=[
-    {id:1,name:"mail"},
-    {id:1,name:"female"}
-]
+export const Gender: { id: number; name: string }[] = [
+  { id: 1, name: 'זכר' },
+  { id: 1, name: 'נקבה' },
+];

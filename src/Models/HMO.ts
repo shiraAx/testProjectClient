@@ -1,6 +1,6 @@
 export const HMO:{id:number,name:string}[]=[
-    {id:1,name:"meuchedet"},
-    {id:1,name:"clalit"}, 
-     {id:1,name:"lehumit"}, 
-      {id:1,name:"macabi"}
+    {id:1,name:"מאוחדת"},
+    {id:1,name:"כללית"}, 
+     {id:1,name:"לאומית"}, 
+      {id:1,name:"מכבי"}
 ]
