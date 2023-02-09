@@ -1,0 +1,157 @@
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        </mat-panel-title>
+        <mat-panel-description>
+         לחץ כאן למילוי פרטי הורה
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form (ngSubmit)="saveUser()" #myForm="ngForm"  >
+        <mat-form-field class="example-full-width">
+          <mat-label>{{userFName?userFName:"שם פרטי"}}</mat-label>
+          <input
+          value="user.FirstName"
+          (mouseout)="saveName()"
+          type="text"
+          name="firstName"
+          id="firstName"
+          [(ngModel)]="user.FirstName"
+          required
+          #f="ngModel"
+           matInput [placeholder]="userFName">
+           
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          
+          <mat-label>{{userLName?userLName:"שם משפחה"}}</mat-label>
+          <input
+          (mouseout)="saveName()"
+          type="text"
+          name="lastName"
+          id="lastName"
+          [(ngModel)]="user.LastName"
+          required
+          #l="ngModel"
+           matInput [placeholder]="userLName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>{{userID?userID:"תעודת זהות"}}</mat-label>
+          <input
+          (mouseout)="saveName()"
+          pattern="[0-9]{5,9}" 
+          type="text"
+          name="id"
+          id="id"
+          [(ngModel)]="user.ParentId"
+          required
+          minlength="9"
+          maxlength="9"
+          #i="ngModel"
+           matInput [placeholder]="userID">
+        </mat-form-field>
+        <!-- <div>
+          <div *ngIf="i.touched && !i.valid">
+            <div *ngIf="i?.errors?.['required']">שדה חובה</div>
+            <div *ngIf="i?.errors?.['minlength']||i?.errors?.['maxlength']">
+              ת.ז. תכיל 9 ספרות בדיוק
+            </div>
+          </div>
+        </div> -->
+        <mat-form-field class="example-full-width">
+          <mat-label>{{userDate?userDate:"תאריך לידה"}}</mat-label>
+          <input
+          (mouseout)="saveName()"
+          type="date"
+          name="birthDate"
+          id="birthDate"
+          [(ngModel)]="user.BirthDate"
+          required
+          #b="ngModel"
+           matInput [placeholder]="userDate">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>{{userGender?userGender:"זכר/ נקבה"}}</mat-label>
+          <mat-select  id="genderType"
+          name="genderType"
+          (mouseout)="saveName()"
+          [(ngModel)]="user.GenderType"
+          required
+          #g="ngModel">
+            <mat-option *ngFor="let x of genderArr" [value]="x.id">{{ x.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>{{userHMo?userHMo:"קופת חולים"}}</mat-label>
+          <mat-select     id="hmoType"
+          (mouseout)="saveName()"
+          name="hmoType"
+          [(ngModel)]="user.HMOType"
+          required
+          #h="ngModel">
+            <mat-option *ngFor="let x of hmoArr" [value]="x.id">{{ x.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                ילד
+              </mat-panel-title>
+              <mat-panel-description>
+                הוספת ילד
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>
+                <form  (ngSubmit)=" saveChildren();myForm2.reset()" #myForm2="ngForm">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>שם</mat-label>
+                        <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        [(ngModel)]="child.Name"
+                        required
+                        #n="ngModel"
+                         matInput placeholder="שם פרטי">
+                      </mat-form-field>
+                     
+                      <mat-form-field class="example-full-width">
+                        <mat-label>תאריך לידה</mat-label>
+                        <input
+                        type="date"
+                        name="birthDate"
+                        id="birthDate"
+                        [(ngModel)]="child.BirthDate"
+                        required
+                        #bc="ngModel"
+                         matInput placeholder="תאריך לידה">
+                      </mat-form-field>
+                 
+                      <mat-form-field class="example-full-width">
+                        <mat-label>תעודת זהות</mat-label>
+                        <input
+                        pattern="[0-9]{5,9}" 
+                        type="text"
+                        name="id"
+                        id="id"
+                        [(ngModel)]="child.ChildId"
+                        required
+                        minlength="9"
+                        maxlength="9"
+                        #ic="ngModel"
+                         matInput placeholder="תעודת זהות">
+                      </mat-form-field>
+                    <input *ngIf="!myForm2.valid" disabled type="submit" value="שמירה" class="submit"/>
+                    <input *ngIf="myForm2.valid" type="submit" value="שמירה" class="submit"/>
+                  </form>
+           
+          </mat-expansion-panel>
+   
+        <input *ngIf="!myForm.valid" disabled type="submit" value="שמירה"  class="submit"/>
+        <input *ngIf="myForm.valid" type="submit" value="שמירה"  class="submit"/>
+      </form>
+      
+    </mat-expansion-panel>
+
