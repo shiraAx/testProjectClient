@@ -46,16 +46,19 @@
           maxlength="9"
            matInput >
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+
+        <mat-form-field appearance="fill" class="example-full-width">
           <mat-label>תאריך לידה שדה חובה</mat-label>
-          <input
-          type="date"
+          <input matInput [matDatepicker]="picker"
           (ngModelChange)="saveInStorage()"
           name="birthDate"
           [(ngModel)]="user.BirthDate"
-          required
-           matInput >
+          required>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+
         <mat-form-field appearance="fill">
           <mat-label>מין שדה חובה</mat-label>
           <mat-select  id="genderType"
@@ -100,17 +103,20 @@
                         pattern="[A-Za-zא-ת]+" 
                          matInput >
                       </mat-form-field>
-                     
-                      <mat-form-field class="example-full-width">
+ 
+                      <mat-form-field appearance="fill" class="example-full-width">
                         <mat-label>תאריך לידה שדה חובה</mat-label>
-                        <input
+                        <input matInput [matDatepicker]="picker1"
                         (ngModelChange)="saveInStorage()"
                         type="date"
                         name="birthDate"
                         [(ngModel)]="child.BirthDate"
-                        required
-                         matInput >
+                        required>
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
                       </mat-form-field>
+
                  
                       <mat-form-field class="example-full-width">
                         <mat-label>תעודת זהות שדה חובה 9 ספרות בדיוק</mat-label>
@@ -137,4 +143,3 @@
       
     </mat-expansion-panel>
 
-   

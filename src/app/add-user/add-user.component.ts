@@ -10,6 +10,7 @@ import { ChildService } from 'src/Services/child.service';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FloatLabelType } from '@angular/material/form-field';
 import * as XLSX from 'xlsx'; 
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-add-user',
@@ -23,10 +24,9 @@ children:Child[]=[]
 data=[]
 genderArr=Gender
 hmoArr=HMO
-
+isCorrectDate:boolean=true
  @ViewChild('myForm') form:any
 constructor(public userService:UserService,public childServise:ChildService){}
-
 
   resetForm(myForm:NgForm){
     if(myForm!=null)
@@ -35,10 +35,13 @@ constructor(public userService:UserService,public childServise:ChildService){}
   ngOnInit(): void {
     if(this.userService.getFromStorage()!=null)
       this.user=this.userService.getFromStorage();
-   }
 
+   }
   saveUser(){
-    console.log("suser",this.user)
+    console.log("date",this.user.BirthDate.getFullYear())
+  this.checkDate(this.user.BirthDate,new Date())
+  if(this.isCorrectDate==true)
+    {console.log("suser",this.user)
     this.user.Children=this.children
     if(this.form.valid)
     {
@@ -69,28 +72,39 @@ constructor(public userService:UserService,public childServise:ChildService){}
            },
             err=>
             {console.log("err",err)})
-   }
+   }}
    this.logOut()
+   this.isCorrectDate=true
   }
-
  saveChildren(){
-  console.log("child",this.child)
-  this.children.push(new Child(this.child.Id,this.child.ChildId,this.child.Name,this.child.BirthDate))
- // this.childServise.PostChild(this.child).subscribe(succ=>{alert("succ")},err=>{"err"})
-  console.log("children",this.children)
+  this.checkDate(this.child.BirthDate,this.user.BirthDate)
+  if(this.isCorrectDate===false){
+    console.log("child",this.child)
+    this.children.push(new Child(this.child.Id,this.child.ChildId,this.child.Name,this.child.BirthDate))
+   // this.childServise.PostChild(this.child).subscribe(succ=>{alert("succ")},err=>{"err"})
+    console.log("children",this.children)
+  }
+ this.isCorrectDate=true
  }
  saveInStorage(){
   localStorage.setItem("curUser",JSON.stringify(this.user)) 
   this.userService.currentUser.next(this.user)
-     console.log("saveInStorageUser",this.user)
+   //  console.log("saveInStorageUser",this.user)
 
 }
 logOut(){
   this.userService.currentUser.next(null)
   this.userService.removeFromStorage();
 }
+checkDate(d1:any,d2:any){
+if(d1>d2)
+{
+  alert("תאריך שגוי")
+  this.isCorrectDate=false
 
+}
 
+}
   exportexcel(json:any[],fileName:string): void 
     {
        /* table id is passed over here */   

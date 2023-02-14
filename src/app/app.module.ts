@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [AppComponent, AddUserComponent, GuidelinesComponent, NavBarComponent],
   imports: [
@@ -39,7 +39,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatDividerModule,
     MatIconModule,
     MatExpansionModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],
