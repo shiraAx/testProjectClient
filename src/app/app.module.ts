@@ -18,9 +18,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
-  declarations: [AppComponent, AddUserComponent, GuidelinesComponent],
+  declarations: [AppComponent, AddUserComponent, GuidelinesComponent, NavBarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +39,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDividerModule,
     MatIconModule,
     MatExpansionModule,
-
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

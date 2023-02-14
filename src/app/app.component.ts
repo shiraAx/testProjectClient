@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit,ViewChild } from '@angular/core';
 import { UserService } from 'src/Services/user.service';
 
 @Component({
@@ -6,8 +6,14 @@ import { UserService } from 'src/Services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  {
+export class AppComponent  implements OnInit{
   title = 'testProjectClient';
+  constructor(public userService:UserService){}
+
+  ngOnInit(): void {
+   this.userService.currentUser.next(this.userService.getFromStorage())
+  }
+  
 
 
 }

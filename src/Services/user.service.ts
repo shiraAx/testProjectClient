@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import User from 'src/Models/User';
 import { BehaviorSubject, Subject } from 'rxjs';
+import Child from 'src/Models/Child';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,7 @@ formData:User
    return this.http.delete(`https://localhost:7146/api/Parents/${id}`)
  }
 
- currentUser = new BehaviorSubject<{ name: string, password: string }>(null);
+ currentUser = new BehaviorSubject<{Id:number,ParentId :string,  FirstName :string, LastName :string,  Children :Child[],GenderType :number,HMOType :number,BirthDate :Date }>(null);
  setInStorage(user){
   localStorage.setItem("curUser",JSON.stringify(user));
 }

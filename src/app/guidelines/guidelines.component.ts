@@ -8,16 +8,16 @@ import { UserService } from 'src/Services/user.service';
   styleUrls: ['./guidelines.component.scss']
 })
 export class GuidelinesComponent implements OnInit{
-  
-  userFName:string=""
-  userLName:string=""
-  constructor(public userService:UserService){
 
-  }
+  user:User=new User(0,"","","", [],0,0,new Date())
+
+constructor(public userService:UserService){}
   ngOnInit(): void {
-   this.userFName=this.userService.getFromStorage()?.FirstName
-   this.userLName=this.userService.getFromStorage()?.LastName
-
+    this.userService.currentUser.subscribe(data=>{this.user=data})
   }
+  logOut(){
+    this.userService.currentUser.next(null)
+    this.userService.removeFromStorage();
 }
 
+}

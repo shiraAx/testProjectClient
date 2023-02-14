@@ -9,87 +9,71 @@
       </mat-expansion-panel-header>
       <form (ngSubmit)="saveUser()" #myForm="ngForm"  >
         <mat-form-field class="example-full-width">
-          <mat-label>{{userFName?userFName:"שם פרטי שדה חובה"}}</mat-label>
+          <mat-label>שם פרטי שדה חובה אותיות בלבד</mat-label>
           <input
-          value="user.FirstName"
-          (mouseout)="saveName()"
+          (ngModelChange)="saveInStorage()"
           type="text"
           name="firstName"
-          id="firstName"
           [(ngModel)]="user.FirstName"
           required
-          #f="ngModel"
-           matInput [placeholder]="userFName">
+          pattern="[A-Za-zא-ת]+" 
+           matInput >
            
         </mat-form-field>
+        
         <mat-form-field class="example-full-width">
           
-          <mat-label>{{userLName?userLName:"שם משפחה שדה חובה"}}</mat-label>
+          <mat-label>שם משפחה שדה חובה אותיות בלבד</mat-label>
           <input
-          (mouseout)="saveName()"
+          (ngModelChange)="saveInStorage()"
           type="text"
           name="lastName"
-          id="lastName"
           [(ngModel)]="user.LastName"
           required
-          #l="ngModel"
-           matInput [placeholder]="userLName">
+           pattern="[A-Za-zא-ת]+" 
+           matInput >
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <mat-label>{{userID?userID:"תעודת זהות שדה חובה 9 ספרות בדיוק"}}</mat-label>
+          <mat-label>תעודת זהות שדה חובה 9 ספרות בדיוק</mat-label>
           <input
-          (mouseout)="saveName()"
-          pattern="[0-9]{5,9}" 
+          (ngModelChange)="saveInStorage()"
+          pattern="[0-9]+" 
           type="text"
           name="id"
-          id="id"
           [(ngModel)]="user.ParentId"
           required
           minlength="9"
           maxlength="9"
-          #i="ngModel"
-           matInput [placeholder]="userID">
+           matInput >
         </mat-form-field>
-        <!-- <div>
-          <div *ngIf="i.touched && !i.valid">
-            <div *ngIf="i?.errors?.['required']">שדה חובה</div>
-            <div *ngIf="i?.errors?.['minlength']||i?.errors?.['maxlength']">
-              ת.ז. תכיל 9 ספרות בדיוק
-            </div>
-          </div>
-        </div> -->
         <mat-form-field class="example-full-width">
-          <mat-label>{{userDate?userDate:"תאריך לידה שדה חובה"}}</mat-label>
+          <mat-label>תאריך לידה שדה חובה</mat-label>
           <input
-          (mouseout)="saveName()"
           type="date"
+          (ngModelChange)="saveInStorage()"
           name="birthDate"
-          id="birthDate"
           [(ngModel)]="user.BirthDate"
           required
-          #b="ngModel"
-           matInput [placeholder]="userDate">
+           matInput >
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>{{userGender?userGender:"מין שדה חובה"}}</mat-label>
+          <mat-label>מין שדה חובה</mat-label>
           <mat-select  id="genderType"
           name="genderType"
-          (mouseout)="saveName()"
+          (ngModelChange)="saveInStorage()"
           [(ngModel)]="user.GenderType"
-          required
-          #g="ngModel">
+          required>
             <mat-option *ngFor="let x of genderArr" [value]="x.id">{{ x.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>{{userHMo?userHMo:"קופת חולים שדה חובה"}}</mat-label>
+          <mat-label>קופת חולים שדה חובה</mat-label>
           <mat-select     id="hmoType"
-          (mouseout)="saveName()"
+          (ngModelChange)="saveInStorage()"
           name="hmoType"
           [(ngModel)]="user.HMOType"
-          required
-          #h="ngModel">
+          required>
             <mat-option *ngFor="let x of hmoArr" [value]="x.id">{{ x.name }}
             </mat-option>
           </mat-select>
@@ -104,44 +88,42 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <p>
-                <form  (ngSubmit)=" saveChildren();myForm2.reset()" #myForm2="ngForm">
+                <form  (ngSubmit)="saveChildren();myForm2.resetForm()" #myForm2="ngForm">
                     <mat-form-field class="example-full-width">
-                        <mat-label>שם</mat-label>
+                      <mat-label>שם פרטי שדה חובה אותיות בלבד</mat-label>
                         <input
+                        (ngModelChange)="saveInStorage()"
                         type="text"
                         name="name"
-                        id="name"
                         [(ngModel)]="child.Name"
                         required
-                        #n="ngModel"
-                         matInput placeholder="שם פרטי שדה חובה">
+                        pattern="[A-Za-zא-ת]+" 
+                         matInput >
                       </mat-form-field>
                      
                       <mat-form-field class="example-full-width">
-                        <mat-label>תאריך לידה</mat-label>
+                        <mat-label>תאריך לידה שדה חובה</mat-label>
                         <input
+                        (ngModelChange)="saveInStorage()"
                         type="date"
                         name="birthDate"
-                        id="birthDate"
                         [(ngModel)]="child.BirthDate"
                         required
-                        #bc="ngModel"
-                         matInput placeholder="תאריך לידה שדה חובה">
+                         matInput >
                       </mat-form-field>
                  
                       <mat-form-field class="example-full-width">
-                        <mat-label>תעודת זהות</mat-label>
+                        <mat-label>תעודת זהות שדה חובה 9 ספרות בדיוק</mat-label>
                         <input
-                        pattern="[0-9]{5,9}" 
+                        (ngModelChange)="saveInStorage()"
+                        pattern="[0-9]+" 
                         type="text"
                         name="id"
-                        id="id"
                         [(ngModel)]="child.ChildId"
                         required
                         minlength="9"
                         maxlength="9"
-                        #ic="ngModel"
-                         matInput placeholder="תעודת זהות שדה חובה 9 ספרות בדיוק">
+                         matInput>
                       </mat-form-field>
                     <input *ngIf="!myForm2.valid" disabled type="submit" value="שמירה" class="submit"/>
                     <input *ngIf="myForm2.valid" type="submit" value="שמירה" class="submit"/>
@@ -155,3 +137,4 @@
       
     </mat-expansion-panel>
 
+   
