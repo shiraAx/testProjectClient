@@ -24,7 +24,6 @@ children:Child[]=[]
 data=[]
 genderArr=Gender
 hmoArr=HMO
-isCorrectDate:boolean=true
  @ViewChild('myForm') form:any
 constructor(public userService:UserService,public childServise:ChildService){}
 
@@ -39,8 +38,7 @@ constructor(public userService:UserService,public childServise:ChildService){}
    }
   saveUser(){
     console.log("date",this.user.BirthDate.getFullYear())
-  this.checkDate(this.user.BirthDate,new Date())
-  if(this.isCorrectDate==true)
+ if( this.checkCorrectDate(this.user.BirthDate,new Date())===true)
     {console.log("suser",this.user)
     this.user.Children=this.children
     if(this.form.valid)
@@ -74,17 +72,15 @@ constructor(public userService:UserService,public childServise:ChildService){}
             {console.log("err",err)})
    }}
    this.logOut()
-   this.isCorrectDate=true
   }
  saveChildren(){
-  this.checkDate(this.child.BirthDate,this.user.BirthDate)
-  if(this.isCorrectDate===false){
+  if(this.checkCorrectDate(this.child.BirthDate,this.user.BirthDate)===true)
+ {
     console.log("child",this.child)
     this.children.push(new Child(this.child.Id,this.child.ChildId,this.child.Name,this.child.BirthDate))
    // this.childServise.PostChild(this.child).subscribe(succ=>{alert("succ")},err=>{"err"})
     console.log("children",this.children)
   }
- this.isCorrectDate=true
  }
  saveInStorage(){
   localStorage.setItem("curUser",JSON.stringify(this.user)) 
@@ -96,14 +92,13 @@ logOut(){
   this.userService.currentUser.next(null)
   this.userService.removeFromStorage();
 }
-checkDate(d1:any,d2:any){
+checkCorrectDate(d1:any,d2:any){
 if(d1>d2)
 {
   alert("תאריך שגוי")
-  this.isCorrectDate=false
-
+  return false;
 }
-
+return true;
 }
   exportexcel(json:any[],fileName:string): void 
     {
