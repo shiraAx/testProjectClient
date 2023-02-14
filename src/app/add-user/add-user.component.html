@@ -70,8 +70,7 @@
           name="genderType"
           (ngModelChange)="saveInStorage()"
           [(ngModel)]="user.GenderType"
-          required
-        >
+          required>
           <mat-option *ngFor="let x of genderArr" [value]="x.id"
             >{{ x.name }}
           </mat-option>
@@ -120,7 +119,7 @@
               matInput
               [matDatepicker]="picker2"
               (ngModelChange)="saveInStorage()"
-              name="birthDate"
+              name="cBirthDate"
               [(ngModel)]="child.BirthDate"
               required
             />

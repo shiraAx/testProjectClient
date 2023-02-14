@@ -46,7 +46,7 @@ constructor(public userService:UserService,public childServise:ChildService){}
       const find= this.userService.GetParent(this.user.ParentId).subscribe(
         succ=>
         {if(succ===null)
-                 {    console.log("suser",this.user);
+                 {    console.log("suser",this.user.GenderType);
                  console.log("children",this.children)
                this.userService.PostParent(new User(0,this.user.ParentId,this.user.FirstName,this.user.LastName,this.children,this.user.GenderType,this.user.HMOType,new Date())).subscribe(
                 succ=>{
@@ -54,6 +54,7 @@ constructor(public userService:UserService,public childServise:ChildService){}
                  console.log("succ",succ);
                 alert("ברוך הבא");
                 this.data.push(new User(0,this.user.ParentId,this.user.FirstName,this.user.LastName,this.children,this.user.GenderType,this.user.HMOType,new Date()))
+                this.children.map(item=>this.data.push(new Child(item.Id,item.ChildId,item.Name,item.BirthDate)))
                 this.exportexcel(this.data,this.user.FirstName)
                 this.data=[]
                       this.resetForm(this.form)
