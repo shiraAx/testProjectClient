@@ -37,7 +37,6 @@ constructor(public userService:UserService,public childServise:ChildService){}
 
    }
   saveUser(){
-    console.log("date",this.user.BirthDate.getFullYear())
  if( this.checkCorrectDate(this.user.BirthDate,new Date())===true)
     {console.log("suser",this.user)
     this.user.Children=this.children
