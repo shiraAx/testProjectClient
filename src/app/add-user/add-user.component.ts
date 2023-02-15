@@ -119,7 +119,6 @@ export class AddUserComponent implements OnInit {
           );
       }
     }
-    this.logOut();
   }
   saveChildren() {
     if (
@@ -141,8 +140,6 @@ export class AddUserComponent implements OnInit {
       console.log('children', this.userService.children);
     }
   }
-
-  logOut() {}
   checkCorrectDate(d1: any, d2: any) {
     if (d1 > d2) {
       alert('תאריך שגוי');
