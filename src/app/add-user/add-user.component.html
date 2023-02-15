@@ -8,10 +8,9 @@
       <mat-form-field class="example-full-width">
         <mat-label>שם פרטי שדה חובה אותיות בלבד</mat-label>
         <input
-          (ngModelChange)="saveInStorage()"
           type="text"
           name="firstName"
-          [(ngModel)]="user.FirstName"
+          [(ngModel)]="userService.user.FirstName"
           required
           pattern="[A-Za-zא-ת]+"
           matInput
@@ -21,10 +20,9 @@
       <mat-form-field class="example-full-width">
         <mat-label>שם משפחה שדה חובה אותיות בלבד</mat-label>
         <input
-          (ngModelChange)="saveInStorage()"
           type="text"
           name="lastName"
-          [(ngModel)]="user.LastName"
+          [(ngModel)]="userService.user.LastName"
           required
           pattern="[A-Za-zא-ת]+"
           matInput
@@ -33,11 +31,10 @@
       <mat-form-field class="example-full-width">
         <mat-label>תעודת זהות שדה חובה 9 ספרות בדיוק</mat-label>
         <input
-          (ngModelChange)="saveInStorage()"
           pattern="[0-9]+"
           type="text"
           name="id"
-          [(ngModel)]="user.ParentId"
+          [(ngModel)]="userService.user.ParentId"
           required
           minlength="9"
           maxlength="9"
@@ -50,9 +47,8 @@
         <input
           matInput
           [matDatepicker]="picker"
-          (ngModelChange)="saveInStorage()"
           name="birthDate"
-          [(ngModel)]="user.BirthDate"
+          [(ngModel)]="userService.user.BirthDate"
           required
         />
         <mat-hint>MM/DD/YYYY</mat-hint>
@@ -68,9 +64,9 @@
         <mat-select
           id="genderType"
           name="genderType"
-          (ngModelChange)="saveInStorage()"
-          [(ngModel)]="user.GenderType"
-          required>
+          [(ngModel)]="userService.user.GenderType"
+          required
+        >
           <mat-option *ngFor="let x of genderArr" [value]="x.id"
             >{{ x.name }}
           </mat-option>
@@ -80,9 +76,8 @@
         <mat-label>קופת חולים שדה חובה</mat-label>
         <mat-select
           id="hmoType"
-          (ngModelChange)="saveInStorage()"
           name="hmoType"
-          [(ngModel)]="user.HMOType"
+          [(ngModel)]="userService.user.HMOType"
           required
         >
           <mat-option *ngFor="let x of hmoArr" [value]="x.id"
@@ -103,10 +98,9 @@
           <mat-form-field class="example-full-width">
             <mat-label>שם פרטי שדה חובה אותיות בלבד</mat-label>
             <input
-              (ngModelChange)="saveInStorage()"
               type="text"
               name="name"
-              [(ngModel)]="child.Name"
+              [(ngModel)]="userService.child.Name"
               required
               pattern="[A-Za-zא-ת]+"
               matInput
@@ -118,9 +112,8 @@
             <input
               matInput
               [matDatepicker]="picker2"
-              (ngModelChange)="saveInStorage()"
               name="cBirthDate"
-              [(ngModel)]="child.BirthDate"
+              [(ngModel)]="userService.child.BirthDate"
               required
             />
             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -134,11 +127,10 @@
           <mat-form-field class="example-full-width">
             <mat-label>תעודת זהות שדה חובה 9 ספרות בדיוק</mat-label>
             <input
-              (ngModelChange)="saveInStorage()"
               pattern="[0-9]+"
               type="text"
               name="id"
-              [(ngModel)]="child.ChildId"
+              [(ngModel)]="userService.child.ChildId"
               required
               minlength="9"
               maxlength="9"

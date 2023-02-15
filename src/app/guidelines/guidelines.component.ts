@@ -13,11 +13,9 @@ export class GuidelinesComponent implements OnInit{
 
 constructor(public userService:UserService){}
   ngOnInit(): void {
-    this.userService.currentUser.subscribe(data=>{this.user=data})
   }
   logOut(){
-    this.userService.currentUser.next(null)
-    this.userService.removeFromStorage();
+
 }
 
 }

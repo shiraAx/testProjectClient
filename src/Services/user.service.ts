@@ -10,6 +10,10 @@ import Child from 'src/Models/Child';
 export class UserService {
 formData:User
 
+child:Child=new Child(0,"","",new Date())
+user:User=new User(0,"","","", [],0,0,new Date())
+children:Child[]=[]
+
   constructor(public http:HttpClient) { }
   GetParents():Observable<User[]>{
     return this.http.get<User[]>("https://localhost:7146/api/Parents")
@@ -25,17 +29,5 @@ formData:User
    return this.http.delete(`https://localhost:7146/api/Parents/${id}`)
  }
 
- currentUser = new BehaviorSubject<{Id:number,ParentId :string,  FirstName :string, LastName :string,  Children :Child[],GenderType :number,HMOType :number,BirthDate :Date }>(null);
- setInStorage(user){
-  localStorage.setItem("curUser",JSON.stringify(user));
-}
-removeFromStorage(){
-  localStorage.removeItem("curUser");
-}
-getFromStorage(){
-  let u=localStorage.getItem("curUser")
-if(u==null)  
-return null;
-return JSON.parse(u);
-}
+
 }

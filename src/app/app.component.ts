@@ -6,19 +6,15 @@ import { UserService } from 'src/Services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  implements OnInit,OnDestroy{
+export class AppComponent  implements OnInit{
   title = 'testProjectClient';
   constructor(public userService:UserService){}
-  ngOnDestroy(): void {
-    this.logOut()
-  }
+ 
 
   ngOnInit(): void {
-   this.userService.currentUser.next(this.userService.getFromStorage())
   }
   logOut(){
-    this.userService.currentUser.next(null)
-    this.userService.removeFromStorage();
+
   }
 
 
